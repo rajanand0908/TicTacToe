@@ -94,9 +94,9 @@
 		BE64E0C62972F39E00A96D57 /* TicTacToeApp */ = {
 			isa = PBXGroup;
 			children = (
-				BE64E0C72972F39E00A96D57 /* TicTacToeAppApp.swift */,
-				BE64E0C92972F39E00A96D57 /* ContentView.swift */,
-				BE64E0CB2972F3A200A96D57 /* Assets.xcassets */,
+				BE64E0F12972FF5C00A96D57 /* App */,
+				BE64E0F22972FF7000A96D57 /* PresentationLayer */,
+				BE64E0F32972FF8100A96D57 /* Resources */,
 				BE64E0CD2972F3A200A96D57 /* Preview Content */,
 			);
 			path = TicTacToeApp;
@@ -125,6 +125,30 @@
 				BE64E0E42972F3A200A96D57 /* TicTacToeAppUITestsLaunchTests.swift */,
 			);
 			path = TicTacToeAppUITests;
+			sourceTree = "<group>";
+		};
+		BE64E0F12972FF5C00A96D57 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BE64E0C72972F39E00A96D57 /* TicTacToeAppApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BE64E0F22972FF7000A96D57 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				BE64E0C92972F39E00A96D57 /* ContentView.swift */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		BE64E0F32972FF8100A96D57 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE64E0CB2972F3A200A96D57 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
