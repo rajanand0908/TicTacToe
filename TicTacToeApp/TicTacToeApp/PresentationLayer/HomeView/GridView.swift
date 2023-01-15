@@ -14,6 +14,7 @@ struct GridView: View {
                  GridItem(.flexible())]
   
   @State private var moves: [Move?] = Array(repeating: nil, count: 9)
+  @State private var isGameBoardDisabled = false
   
   var body: some View {
     GeometryReader { geometry in
@@ -34,16 +35,19 @@ struct GridView: View {
               guard !isSquareOccupied(in: moves, forIndex: index) else { return }
               moves[index] = Move(player: .human,
                                   boardIndex: index)
+              isGameBoardDisabled = true
               // check for win condition or draw
               DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 let computerPosition = determineComputerMovePosition(in: moves)
                 moves[computerPosition] = Move(player: .computer, boardIndex: computerPosition)
+                isGameBoardDisabled = false
               }
             }
           }
         }
         Spacer()
       }
+      .disabled(isGameBoardDisabled)
       .padding()
     }
   }
