@@ -32,6 +32,7 @@ struct GridView: View {
                 .foregroundColor(.white)
             }
             .onTapGesture {
+              guard !isSquareOccupied(in: moves, forIndex: index) else { return }
               moves[index] = Move(player: isHumanTurn ? .human : .computer,
                                   boardIndex: index)
               isHumanTurn.toggle()
@@ -42,5 +43,9 @@ struct GridView: View {
       }
       .padding()
     }
+  }
+  
+  func isSquareOccupied(in moves: [Move?], forIndex index: Int) -> Bool {
+    return moves.contains(where: { $0?.boardIndex == index })
   }
 }
