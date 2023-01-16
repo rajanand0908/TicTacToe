@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GameBoardView: View {
+  
   var body: some View {
     GridView()
   }
