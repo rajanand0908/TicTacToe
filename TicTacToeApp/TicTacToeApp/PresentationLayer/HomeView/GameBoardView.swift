@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  GameBoardView.swift
 //  TicTacToeApp
 //
 //  Created by Raj Anand on 15/01/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct GameBoardView: View {
   var body: some View {
     GridView()
   }
@@ -15,6 +15,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
-    HomeView()
+    GameBoardView()
   }
 }
