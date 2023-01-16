@@ -15,6 +15,7 @@ struct GridView: View {
   
   @State private var moves: [Move?] = Array(repeating: nil, count: 9)
   @State private var isGameBoardDisabled = false
+  @State private var alertItem: AlertItem?
   
   var body: some View {
     GeometryReader { geometry in
@@ -36,12 +37,12 @@ struct GridView: View {
               moves[index] = Move(player: .human,
                                   boardIndex: index)
               if checkWinCondition(for: .human, in: moves) {
-                print("Human wins")
+                alertItem = AlertContext.humanWin
                 return
               }
               
               if checkForDraw(in: moves) {
-                print("Game Draw")
+                alertItem = AlertContext.draw
                 return
               }
               isGameBoardDisabled = true
@@ -52,11 +53,11 @@ struct GridView: View {
                 isGameBoardDisabled = false
               }
               if checkWinCondition(for: .computer, in: moves) {
-                print("Computer wins")
+                alertItem = AlertContext.computerWin
                 return
               }
               if checkForDraw(in: moves) {
-                print("Game Draw")
+                alertItem = AlertContext.draw
                 return
               }
             }
@@ -66,6 +67,11 @@ struct GridView: View {
       }
       .disabled(isGameBoardDisabled)
       .padding()
+      .alert(item: $alertItem) { alertItem in
+        Alert(title: alertItem.title,
+              message: alertItem.message,
+              dismissButton: .default(alertItem.buttonTitle) { resetGame() })
+      }
     }
   }
   
@@ -89,6 +95,10 @@ struct GridView: View {
   
   func checkForDraw(in moves: [Move?]) -> Bool {
     return moves.compactMap { $0 }.count == 9
+  }
+  
+  func resetGame() {
+    moves = Array(repeating: nil, count: 9)
   }
   
 }
