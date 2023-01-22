@@ -36,14 +36,14 @@ final class GameBoardViewModel: ObservableObject {
       let computerPosition = determineComputerMovePosition(in: moves)
       moves[computerPosition] = Move(player: .computer, boardIndex: computerPosition)
       isGameBoardDisabled = false
-    }
-    if checkWinCondition(for: .computer, in: moves) {
-      alertItem = AlertContext.computerWin
-      return
-    }
-    if checkForDraw(in: moves) {
-      alertItem = AlertContext.draw
-      return
+      if checkWinCondition(for: .computer, in: moves) {
+        alertItem = AlertContext.computerWin
+        return
+      }
+      if checkForDraw(in: moves) {
+        alertItem = AlertContext.draw
+        return
+      }
     }
   }
   
@@ -62,7 +62,8 @@ final class GameBoardViewModel: ObservableObject {
   func checkWinCondition(for player: Player, in moves: [Move?]) -> Bool {
     let winPatters: Set<Set<Int>> = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7], [2, 5, 8], [2, 4, 6], [3, 4, 5], [6, 7, 8]]
     let playersPosition = Set(moves.compactMap { $0 }.filter { $0.player == player }.map { $0.boardIndex })
-    return winPatters.contains(playersPosition)
+     for pattern in winPatters where pattern.isSubset(of: playersPosition) { return true }
+    return false
   }
   
   func checkForDraw(in moves: [Move?]) -> Bool {
